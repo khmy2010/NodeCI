@@ -42,24 +42,20 @@ mongoose.Query.prototype.exec = async function() {
         })
     );
 
-    const cacheValue = await client.hget(this.hashKey, key);
+    // const cacheValue = await client.hget(this.hashKey, key);
 
-    if (cacheValue) {
-        const doc = JSON.parse(cacheValue);
+    // if (cacheValue) {
+    //     const doc = JSON.parse(cacheValue);
 
-        return Array.isArray(doc)
-            ? doc.map(d => new this.model(d))
-            : new this.model(doc);
-    }
+    //     return Array.isArray(doc)
+    //         ? doc.map(d => new this.model(d))
+    //         : new this.model(doc);
+    // }
 
     const result = await exec.apply(this, arguments);
 
-    console.log('this.hashKey: ', this.hashKey);
-    console.log('key: ', key);
-    console.log('result: ', result);
-
-    client.hset(this.hashKey, key, JSON.stringify(result));
-    client.set('fuck', 'me', redis.print);
+    // client.hset(this.hashKey, key, JSON.stringify(result));
+    // client.set('fuck', 'me', redis.print);
 
     return result;
 };
