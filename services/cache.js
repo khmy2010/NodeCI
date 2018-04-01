@@ -3,7 +3,22 @@ const redis = require('redis');
 const util = require('util');
 const keys = require('../config/keys');
 
-const client = redis.createClient(keys.redisUrl);
+let client;
+if (process.env.NODE_ENV !== 'production') {
+    client = redis.createClient(keys.redisUrl);
+} else {
+    client = redis.createClient(keys.redisPort, keys.redisHost, {
+        no_ready_check: true
+    });
+    client.auth(keys.redisPassword, function(err) {
+        if (err) {
+            throw err;
+        }
+    });
+    client.on('connect', function() {
+        console.log('Connected to redis');
+    });
+}
 
 client.hget = util.promisify(client.hget);
 const exec = mongoose.Query.prototype.exec;

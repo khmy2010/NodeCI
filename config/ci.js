@@ -11,3 +11,5 @@ module.exports = {
 //travis encrypt mongoURI="mongodb://localhost:27017/Blogster-CI" --add
 //travis encrypt cookieKey="123123" --add
 //travis encrypt redisUrl="redis://127.0.0.1:6379" --add
+
+//Hb0uoWSTQtgTYbWJhd3WgEUss48JoBMf
