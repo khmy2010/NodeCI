@@ -36,11 +36,11 @@ mongoose.Query.prototype.exec = async function() {
         return exec.apply(this, arguments);
     }
 
-    const key = JSON.stringify(
-        Object.assign({}, this.getQuery(), {
-            collection: this.mongooseCollection.name
-        })
-    );
+    // const key = JSON.stringify(
+    //     Object.assign({}, this.getQuery(), {
+    //         collection: this.mongooseCollection.name
+    //     })
+    // );
 
     // const cacheValue = await client.hget(this.hashKey, key);
 
