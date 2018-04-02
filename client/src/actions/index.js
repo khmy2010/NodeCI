@@ -21,7 +21,9 @@ export const submitBlog = (values, history) => async dispatch => {
 };
 
 export const fetchBlogs = () => async dispatch => {
+  console.time('start fetch blogs');
   const res = await axios.get('/api/blogs');
+  console.timeEnd('done fetch blogs');
 
   dispatch({ type: FETCH_BLOGS, payload: res.data });
 };
